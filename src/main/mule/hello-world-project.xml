@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6a585aaa-955d-46f8-aa05-44384c3e6265" >
+		<http:listener-connection host="localhost" port="8082" />
+	</http:listener-config>
+	<flow name="hello-world-projectFlow" doc:id="44cbe111-d4df-4571-beab-14a4eea10ee4" >
+		<http:listener doc:name="Listener" doc:id="4f974c16-38d3-4cb2-b018-7b0f894bc97a" config-ref="HTTP_Listener_config" path="/test"/>
+		<logger level="INFO" doc:name="Logger" doc:id="2b2d9d00-eef5-40c8-aec6-b32034896fa9"/>
+		<set-payload doc:name="override" doc:id="cd26d806-2a8d-4621-a3a7-ebaab2e2e731" value='"Hi All ..................Good Morning :-) "'/>
+		<logger level="INFO" doc:name="Logger" doc:id="eac597cb-cdbb-49a9-bf5a-24b986844383" message="#[payload]"/>
+	</flow>
+</mule>
